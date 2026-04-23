@@ -4,21 +4,6 @@
 #include <string>
 #include <vector>
 
-namespace random
-{
-    std::mt19937_64 generate()
-    {
-        std::random_device rd ;
-        return std::mt19937_64(rd());
-    }
-
-    std::mt19937_64 mt{ generate() } ;
-
-    int getInt( const int min ,const int max )
-    {
-        return std::uniform_int_distribution{ min , max}(mt) ;
-    }
-}
 int main()
 {
     //Get the password
@@ -70,8 +55,7 @@ int main()
 
     for ( std::size_t index { 0 } ; index < integersToBits.size() ; ++ index)
     {
-        const int randomBit = random::getInt(0 , 7) ;
-        integersToBits.at(index).flip( randomBit ) ;
+        integersToBits.at(index).flip(  ) ;
         std::cout << integersToBits[index] << '\n' ;
     }
 
