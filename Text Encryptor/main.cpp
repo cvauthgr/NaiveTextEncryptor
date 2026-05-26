@@ -51,7 +51,7 @@ public :
 
     void prompthTheUserHisNewXORDecryptionKey()
     {
-        std::cout << "Your new decryption key is (remember this) : " << (m_encryptionKey & 0xFF) ;
+        std::cout << "Your new decryption key is (remember this) : " << (m_encryptionKey & 0xFF) << '\n' ;
     }
 
     void getEncryptedPassword()
