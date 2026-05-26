@@ -20,7 +20,7 @@ public :
 
     void setEncryptionKey()
     {
-        std::cout << "Give the encryption key ( remember this ) : " ;
+        std::cout << "Give the encryption key : " ;
         std::cin >> m_encryptionKey ;
     }
 
@@ -38,6 +38,7 @@ public :
             setEncryptionKey() ;
             encrypt() ;
             getEncryptedPassword();
+            prompthTheUserHisNewXORDecryptionKey();
             askIfTheUserWantsToReExecute();
         }while( m_usersChoiceOnContinuingExecution == 'y' || m_usersChoiceOnContinuingExecution == 'Y' ) ;
     }
@@ -46,6 +47,11 @@ public :
     {
         for( char& passChar : m_password )
             passChar = static_cast<char>( static_cast<int>(passChar) ^ (m_encryptionKey & 0xFF) ) ;
+    }
+
+    void prompthTheUserHisNewXORDecryptionKey()
+    {
+        std::cout << "Your new decryption key is (remember this) : " << (m_encryptionKey & 0xFF) ;
     }
 
     void getEncryptedPassword()
