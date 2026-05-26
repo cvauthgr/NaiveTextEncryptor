@@ -1,9 +1,9 @@
 # NaiveTextEncryptor
 
 >[!WARNING]
->This project is still in construction
+>This project is an experiment , it's NOT something for real cryptographic use!
 
-I built this as a joke . The code is very low quality and should not be used . The core idea is simple.
+This is a simple XOR encryption algorithm written in C++23 
 
 ```mermaid
 ---
@@ -11,104 +11,59 @@ config:
   layout: fixed
 ---
 flowchart TB
-    A["Password"] --> B["Separate into characters"]
-    B --> C["Cast each char to an int"]
-    C --> d["Transform each int to a bit representation"]
-    d --> e["Flip all he bits"]
-    e --> f["Reverse the bits to an int and back to a char"]
-    f --> g@{ label: "Reconstruct the string from the 'encrypted' chars" }
-    g --> c@{ label: "Password is 'Encrypted'" }
-
-    g@{ shape: rect}
-    c@{ shape: rect}
+    A["Password"] --> B["Take each character"]
+    B --> d["XOR the int bit represantation with the key bits"]
+    d --> f["Reconstruct the string from the 'encrypted' chars"]
+    f --> c["Password is now 'Encrypted'"]
 ```
-
-Utiling a simple bitwise-NOT operation we can achieve "toy" encryption like in the examples provided below
 
 ## Examples
 
 **Example 1**
 
 ```
-Password : ILoveYou
+Give the password : ILoveC++23(^_^)
 ```
 
-We get ( as the full program output )
+We get prompted for a key :
 
 ```
-Password characters
-I
-L
-o
-v
-e
-Y
-o
-u
-Characters to integers
-73
-76
-111
-118
-101
-89
-111
-117
-Integers to bits
-01001001
-01001100
-01101111
-01110110
-01100101
-01011001
-01101111
-01110101
-Reversed bits
-10110110
-10110011
-10010000
-10001001
-10011010
-10100110
-10010000
-10001010
-Reversed bits back to ints
-182
-179
-144
-137
-154
-166
-144
-138
-Reversed ints back to encrypted chars
-╢
-│
-É
-ë
-Ü
-ª
-É
-è
-Encrypted Password : ╢│ÉëÜªÉè
+Give the encryption key : 420
 ```
 
-Which contains the characters of the original password , their values after they have been casted to an int and their bit represantion . Also we can see their flipped bit representation as well as the encypted password on the end 
-
-This function ( even if it is obvious ) works as the encryptor and the decryptor
-
-if we input again 
+Next we acquire our encrypted password and our new decryption key :
 
 ```
-
-Password : ╢│ÉëÜªÉè
-
+The password after encryption : φΦ╦╥┴τÅÅûùî·√·ì
+Your new decryption key is (remember this) : 164
 ```
 
-We get back the original password we gave at the start 
+And finally we are asked if we want to re-run the encryptor :
 
 ```
+Do you want to run the encryptor again ? (y/n) : N //We choose to terminate execution
+```
 
-Encrypted Password : ILoveYou
+This program ( even if it is obvious ) works as the encryptor and the decryptor
+
+if we input again as the password the previous output with the exact same key , we get : 
 
 ```
+Give the password : φΦ╦╥┴τÅÅûùî·√·ì
+Give the encryption key : 164
+The password after encryption : ILoveC++23(^_^)
+```
+
+We get back the original password we gave at the start , but why does that happen ? 
+
+## The awesome XOR property 
+
+For every XOR operation we can prove that B^A^A = B 
+
+Assume B = 01010101 and A = 00000001 
+
+01010101 ^ 00000001 = 10101010 and then 10101010 ^ 00000001 = 01010101 which is B again 
+
+In my program i use the last 8 bits of every key ( that is why we need a decryption key ) as a very big encryption key , ex. 1291901 is not contained in 8 bits only.In comparison all printable characters are in the range 0-255 which can be easily contained in a single byte of 8 bits .
+
+
