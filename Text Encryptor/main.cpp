@@ -57,7 +57,7 @@ public :
             passChar = static_cast<char>( static_cast<int>(passChar) ^ (m_encryptionKey & 0xFF) ) ;
     }
 
-    void prompthTheUserHisNewXORDecryptionKey()
+    void XORDecryptionKey()
     {
         std::cout << "Your new decryption key is (remember this) : " << (m_encryptionKey & 0xFF) << '\n' ;
     }
