@@ -22,6 +22,7 @@ public :
     {
         std::cout << "Give the encryption key : " ;
         std::cin >> m_encryptionKey ;
+        handleCinIntegrity();
     }
 
     void askIfTheUserWantsToReExecute()
@@ -62,6 +63,17 @@ public :
 
     void clearPassword(){ m_password.clear() ; }
     void clearUserChoice(){ m_usersChoiceOnContinuingExecution = { } ; }
+
+    void handleCinIntegrity()
+    {
+        while(!(std::cin))
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout <<"Encryption key can ONLY be a value of numerical type!Re-enter input!\n" ;
+            setEncryptionKey();
+        }
+    }
 
 };
 int main()
