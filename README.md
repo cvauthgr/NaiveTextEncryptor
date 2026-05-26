@@ -1,7 +1,7 @@
 # NaiveTextEncryptor
 
 >[!WARNING]
->This project is experiment , it's NOT something for real cryptographic use!
+>This project is an experiment , it's NOT something for real cryptographic use!
 
 This is a simple XOR encryption algorithm written in C++23 
 
