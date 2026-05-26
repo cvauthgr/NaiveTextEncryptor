@@ -1,7 +1,23 @@
 # NaiveTextEncryptor
 
 >[!WARNING]
->This project is an experiment , it's NOT something for real cryptographic use!
+>This project is an experiment built only because I was curious after watching someone on Youtube do it , it's NOT something for real cryptographic use!
+
+## How to run ( Windows tested only )
+
+1) Download the zip and exctract it's content ( main.cpp ) at a specified location
+2) Go at the specified location and copy as path the main.cpp file location
+3) Go to powershell and execute these commands one by one 
+
+```
+cd thePathYouCopied
+g++ -std=c++23 -g -o main main.cpp
+./main
+```
+
+Requirments : GCC Version 13 (minimum)
+
+## About the project
 
 This is a simple XOR encryption algorithm written in C++23 
 
@@ -65,5 +81,3 @@ Assume B = 01010101 and A = 00000001
 01010101 ^ 00000001 = 10101010 and then 10101010 ^ 00000001 = 01010101 which is B again 
 
 In my program i use the last 8 bits of every key ( that is why we need a decryption key ) as a very big encryption key , ex. 1291901 is not contained in 8 bits only.In comparison all printable characters are in the range 0-255 which can be easily contained in a single byte of 8 bits .
-
-
